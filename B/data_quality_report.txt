@@ -1,0 +1,40 @@
+《后会友期》微博数据质量报告
+平台：微博（weibo）
+生成时间：2026-11-12
+
+一、数据规模
+  原始评论（raw.csv）: 4437 条
+  程序清洗后（clean.py）: 4398 条
+  人工筛选后保留（processed.csv）: 1547 条
+  覆盖帖子数: 394 篇
+
+二、清洗过程（4437 -> 4398）
+  按 comment_id 去重: 0 条
+  按 帖子+用户+文本 去重: 4 条
+  删除 空/纯符号/纯URL: 29 条
+  删除 广告/引流: 6 条
+
+三、数据结构（processed.csv 1547 条）
+  一级评论: 1486
+  回复（二级评论）: 61
+  source_type 分布:
+    user_discussion: 1189
+    guest: 262
+    official: 96
+  评论时间范围: 2026-10-24 21:48:00 ~ 2026-11-12 16:41:00
+
+四、字段说明（16 字段）
+  raw.csv 与 processed.csv 字段完全一致：
+    comment_id, post_id, parent_comment_id, platform, content,
+    clean_content, tokens, create_time, crawl_time, user_id,
+    like_count, reply_count, post_title, post_url, source_type, keyword
+  - clean_content：content 清理符号/URL/@/空白后的文本（保留否定词、程度副词、表情）
+  - tokens：jieba 分词结果（空格分隔）
+  - raw.csv：原始全量（4437 条）
+  - processed.csv：程序清洗 + 人工筛选后的最终数据（1547 条）
+
+五、说明
+  - user_id 为 MediaCrawler 已脱敏的 creator_hash，不含原始用户 ID。
+  - content 保留原文；clean_content 仅做符号/URL/@/空白清理。
+  - 未按长度删除短评论；未做主题相关性/立场自动过滤。
+  - post_title 为空：微博正文无标题。
