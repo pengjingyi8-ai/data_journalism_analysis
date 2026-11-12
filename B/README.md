@@ -12,7 +12,7 @@
 | `processed.csv` | 最终数据，16 字段（程序清洗 + 人工筛选） | 1547 条评论 |
 | `crawler.py` | MediaCrawler 微博 jsonl → 规范 CSV | — |
 | `clean.py` | raw.csv → processed.csv（初筛）+ 质量报告 | — |
-| `data_quality_report.txt` | 数据质量报告（最终版） | — |
+| `data_quality_report.txt` | 数据质量报告 | — |
 
 `raw.csv` 与 `processed.csv` 字段名、顺序完全一致，严格遵循《数据采集与预处理统一规范》（16 字段），可与小红书端直接合并。
 
